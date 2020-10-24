@@ -1,5 +1,10 @@
 @extends('layouts.back.app')
 
+@section('css_lib')
+<link rel="stylesheet" href="{{ asset('assets/back/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/back/modules/datatables/datatables.min.css') }}">
+@endsection
+
 @section('content')
 <div class="main-content">
     <section class="section">
@@ -69,3 +74,11 @@
     </section>
 </div>
 @endsection
+
+@push('jslib')
+<!-- Page Specific JS File -->
+<script src="{{ asset('assets/back/modules/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/back/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/back/modules/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/back/js/page/modules-datatables.js') }}"></script>
+@endpush
