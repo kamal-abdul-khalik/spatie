@@ -61,7 +61,7 @@
         @endif
         @if(Session::has('info'))
         iziToast.info({
-            title: 'Updated',
+            title: 'Info',
             message: "{{Session::get('info')}}",
             position: 'bottomRight'
         })
@@ -70,6 +70,13 @@
         iziToast.error({
             title: 'Error',
             message: "{{Session::get('error')}}",
+            position: 'topRight'
+        })
+        @endif
+        @if(Session::has('warning'))
+        iziToast.warning({
+            title: 'Warning',
+            message: "{{Session::get('warning')}}",
             position: 'topRight'
         })
         @endif
