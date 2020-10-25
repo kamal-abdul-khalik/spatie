@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Ask for db migration refresh, default is no
-        if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
+        if ($this->command->confirm('Dengan melakukan db:seed, maka seluruh data dalam database akan di hapus !')) {
             // Call the php artisan migrate:refresh
             $this->command->call('migrate:refresh');
-            $this->command->warn("Data cleared, starting from blank database.");
+            $this->command->warn("Semua data dalam database terhapus.");
         }
 
         // Seed the default permissions
@@ -28,13 +28,13 @@ class DatabaseSeeder extends Seeder
             Permission::firstOrCreate(['name' => $perms]);
         }
 
-        $this->command->info('Default Permissions added.');
+        $this->command->info('Perizinan default di tambahkan.');
 
         // Confirm roles needed
-        if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
+        if ($this->command->confirm('Buat peran baru untuk pengguna, default peran adalah super admin dan penulis? [y|N]', true)) {
 
             // Ask for roles from input
-            $input_roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,Penulis');
+            $input_roles = $this->command->ask('Inputkan peran, dengan dipisah dengan koma.', 'super admin,penulis');
 
             // Explode roles
             $roles_array = explode(',', $input_roles);
@@ -43,10 +43,10 @@ class DatabaseSeeder extends Seeder
             foreach ($roles_array as $role) {
                 $role = Role::firstOrCreate(['name' => trim($role)]);
 
-                if ($role->name == 'Admin') {
+                if ($role->name == 'super admin') {
                     // assign all permissions
                     $role->syncPermissions(Permission::all());
-                    $this->command->info('Admin granted all the permissions');
+                    $this->command->info('super admin telah memilik semua akses');
                 } else {
                     // for others by default only read access
                     $role->syncPermissions(Permission::where('name', 'LIKE', 'view_%')->get());
@@ -56,10 +56,10 @@ class DatabaseSeeder extends Seeder
                 $this->createUser($role);
             }
 
-            $this->command->info('Roles ' . $input_roles . ' added successfully');
+            $this->command->info('Peran ' . $input_roles . ' sukses ditambahkan');
         } else {
-            Role::firstOrCreate(['name' => 'Penulis']);
-            $this->command->info('Added only default user role.');
+            Role::firstOrCreate(['name' => 'penulis']);
+            $this->command->info('Menambahkan peran default untuk peran penulis.');
         }
 
         $this->call([
@@ -79,10 +79,10 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create();
         $user->assignRole($role->name);
 
-        if ($role->name == 'Admin') {
-            $this->command->info('Here is your admin details to login:');
+        if ($role->name == 'super admin') {
+            $this->command->info('Ini adalah informasi login dari super admin: ');
             $this->command->warn($user->email);
-            $this->command->warn('Password is "secret"');
+            $this->command->warn('Password is "password"');
         }
     }
 }
