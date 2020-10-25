@@ -26,6 +26,18 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_posts',
             'edit_posts',
             'delete_posts',
+
+            'view_categories',
+            'add_categories',
+            'edit_categories',
+            'delete_categories',
+
+            'view_tags',
+            'add_tags',
+            'edit_tags',
+            'delete_tags',
+
+            //silahkan tambahkan default permission sesuai keinginan 
         ];
     }
 }

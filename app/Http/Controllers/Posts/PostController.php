@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Posts;
 
+use App\Authorizable;
 use Illuminate\Support\Str;
 use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    use Authorizable;
+
     public function index()
     {
         return view('back.post.index', [
@@ -35,7 +38,7 @@ class PostController extends Controller
         $post = auth()->user()->posts()->create($data);
         $post->tags()->sync(request('tags'));
 
-        return redirect()->route('post.index')
+        return redirect()->route('posts.index')
             ->with('success', 'Post with title ' . $data['title'] . ' was created');
     }
 
@@ -67,7 +70,7 @@ class PostController extends Controller
         $post->update($data);
         $post->tags()->sync(request('tags'));
 
-        return redirect()->route('post.index')
+        return redirect()->route('posts.index')
             ->with('info', 'Post with title ' . $data['title'] . ' was updated');
     }
 
@@ -76,7 +79,7 @@ class PostController extends Controller
         Storage::delete($post->thumbnail);
         $post->tags()->detach();
         $post->delete();
-        return redirect()->route('post.index')
+        return redirect()->route('posts.index')
             ->with('info', 'Post was deleted');
     }
 }

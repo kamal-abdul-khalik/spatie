@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use App\Models\Tags;
 
 class TagsSeeder extends Seeder
 {
@@ -32,7 +32,7 @@ class TagsSeeder extends Seeder
         ]);
 
         $tags->each(function ($tag) {
-            Tags::create([
+            Tag::create([
                 'name' => $tag,
                 'slug' => Str::slug($tag),
             ]);

@@ -11,12 +11,12 @@
     <section class="section">
       <div class="section-header">
         <div class="section-header-back">
-          <a href="{{ route('post.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+          <a href="{{ route('posts.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
         </div>
         <h1>Create New Post</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="{{ route('post.index') }}">Posts</a></div>
+          <div class="breadcrumb-item"><a href="{{ route('posts.index') }}">Posts</a></div>
           <div class="breadcrumb-item">Create New Post</div>
         </div>
       </div>
@@ -29,7 +29,7 @@
                 <h4>Write Your Post</h4>
               </div>
               <div class="card-body">
-                <form action="{{ route('post.create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('posts.create') }}" method="post" enctype="multipart/form-data">
 
                     @csrf
 

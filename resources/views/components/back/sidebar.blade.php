@@ -15,8 +15,8 @@
             <li class="dropdown{{ request()->is('post') ? ' active' : '' }} || {{ request()->is('post/create') ? ' active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Posts</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ request()->is('post') ? ' active' : '' }}"><a class="nav-link" href="{{ route('post.index') }}">List Posts</a></li>
-                    <li class="{{ request()->is('post/create') ? ' active' : '' }}"><a class="nav-link" href="{{ route('post.create') }}">Add Post</a></li>
+                    <li class="{{ request()->is('post') ? ' active' : '' }}"><a class="nav-link" href="{{ route('posts.index') }}">List Posts</a></li>
+                    <li class="{{ request()->is('post/create') ? ' active' : '' }}"><a class="nav-link" href="{{ route('posts.create') }}">Add Post</a></li>
                 </ul>
             </li>
         </ul>

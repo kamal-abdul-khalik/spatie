@@ -48,7 +48,7 @@
                                             @endcan
                                         </td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->roles->pluck('name') }}</td>
+                                        <td>{{ $user->roles->implode('name', ', ') }}</td>
                                         <td>{{ $user->created_at->format('d F Y') }}</td>
                                     </tr>
                                     @endforeach

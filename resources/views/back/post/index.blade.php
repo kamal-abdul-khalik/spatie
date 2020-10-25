@@ -16,7 +16,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4><a class="btn btn-sm btn-primary" href="{{ route('post.create') }}">New Post</a></h4>
+                        <h4><a class="btn btn-sm btn-primary" href="{{ route('posts.create') }}">New Post</a></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -29,7 +29,6 @@
                                         <th>Tags</th>
                                         <th>Status</th>
                                         <th>Author</th>
-                                        {{-- <th>Actions</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,10 +39,10 @@
                                             <div class="table-links">
                                                 <a href="#">View</a>
                                                 <div class="bullet"></div>
-                                                <a href="{{ route('post.edit', $post) }}">Edit</a>
+                                                <a href="{{ route('posts.edit', $post) }}">Edit</a>
                                                 <div class="bullet"></div>
-                                                <a href="{{ route('post.destroy', $post) }}" onclick="event.preventDefault();document.getElementById('destroy').submit();" class="text-danger">Trash</a>
-                                                <form id="destroy" action="{{ route('post.destroy', $post) }}" method="POST" style="display: none;">
+                                                <a href="{{ route('posts.destroy', $post) }}" onclick="event.preventDefault();document.getElementById('destroy').submit();" class="text-danger">Trash</a>
+                                                <form id="destroy" action="{{ route('posts.destroy', $post) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
