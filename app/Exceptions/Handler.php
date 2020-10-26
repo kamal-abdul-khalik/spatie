@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => $exception->getMessage()], 403);
         }
-        return redirect()->route('dashboard')
+        return redirect()->back()
             ->with('warning', $exception->getMessage());
     }
 }
