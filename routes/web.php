@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Posts\PostController;
-use App\Http\Controllers\Permissions\{RoleController, PermissionController};
+use App\Http\Controllers\Permissions\{RoleController, PermissionController, AssignController, UserController};
 
 Route::get('/', function () {
     return view('front');
@@ -24,10 +23,22 @@ Route::middleware('has.role', 'auth')->group(function () {
 
         Route::get('{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('{post:slug}/edit', [PostController::class, 'update'])->name('posts.update');
+        Route::delete('{post:slug}/destroy', [UserController::class, 'destroy'])->name('posts.destroy');
     });
 
     // Route RoleController
     Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
+        // Route Permission
+        Route::get('assignable', [AssignController::class, 'create'])->name('assign.create');
+        Route::post('assignable', [AssignController::class, 'store']);
+        Route::get('assignable/{role}/edit', [AssignController::class, 'edit'])->name('assign.edit');
+        Route::put('assignable/{role}/edit', [AssignController::class, 'update']);
+        //Route User
+        Route::get('assign/user', [UserController::class, 'create'])->name('assign.user.create');
+        Route::post('assign/user', [UserController::class, 'store']);
+        Route::get('assign/{user}/user', [UserController::class, 'edit'])->name('assign.user.edit');
+        Route::put('assign/{user}/user', [UserController::class, 'update']);
+
         Route::prefix('roles')->group(function () {
             Route::get('/', [RoleController::class, 'index'])->name('roles.index');
             Route::post('create', [RoleController::class, 'store'])->name('roles.create');
