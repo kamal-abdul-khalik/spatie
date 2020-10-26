@@ -36,14 +36,18 @@
             </li>
             @endcan
 
-            @can('add_permission')
+            @can('add_roles')
             <li class="menu-header">Roles and Permissions</li>
-            <li class="dropdown">
+            <li class="dropdown{{ request()->is('role-and-permission/roles') ? ' active' : '' }} ||
+                {{ request()->is('role-and-permission/permissions') ? ' active' : '' }} ||
+                {{ request()->is('role-and-permission/assignable') ? ' active' : '' }} ||
+                {{ request()->is('role-and-permission/assign/user') ? ' active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Role - Permission</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link" href="{{ route('roles.index') }}">Role</a></li>
-                    <li class=""><a class="nav-link" href="">Permission</a></li>
-                    <li class=""><a class="nav-link" href="">Assign Permission</a></li>
+                    <li class="{{ request()->is('role-and-permission/roles') ? ' active' : '' }}"><a class="nav-link" href="{{ route('roles.index') }}">Role</a></li>
+                    <li class="{{ request()->is('role-and-permission/permissions') ? ' active' : '' }}"><a class="nav-link" href="{{ route('permissions.index') }}">Permission</a></li>
+                    <li class="{{ request()->is('role-and-permission/assignable') ? ' active' : '' }}"><a class="nav-link" href="{{ route('assign.create') }}">Assign Permission</a></li>
+                    <li class="{{ request()->is('role-and-permission/assign/user') ? ' active' : '' }}"><a class="nav-link" href="{{ route('assign.user.create') }}">Give Role to User</a></li>
                 </ul>
             </li>
             @endcan
