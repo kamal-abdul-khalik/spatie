@@ -9,7 +9,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        return view('back.permission.role.index', [
+        return view('back.permissions.role.index', [
             'roles' => Role::get(),
             'role' => new Role,
         ]);
@@ -32,7 +32,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('back.permission.role.edit', [
+        return view('back.permissions.role.edit', [
             'submit' => 'Update',
             'role' => $role,
         ]);
@@ -51,12 +51,5 @@ class RoleController extends Controller
 
         return redirect()->route('roles.index')
             ->with('info', 'Role with name ' . $role->name . ' was updated');
-    }
-
-    public function destroy(Role $role)
-    {
-        dd($role->name);
-        return redirect()->route('roles.index')
-            ->with('info', 'Role was deleted');
     }
 }
