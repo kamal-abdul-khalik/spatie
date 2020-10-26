@@ -19,7 +19,7 @@
                             @csrf
                             @method('PUT')
 
-                            @include('back.permission.role.partials.form-control')
+                            @include('back.permissions.role.partials.form-control')
                         </form>
                     </div>
                 </div>

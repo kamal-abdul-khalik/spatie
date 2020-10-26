@@ -22,7 +22,7 @@
                         <form action="{{ route('roles.create') }}" method="post">
                             @csrf
 
-                            @include('back.permission.role.partials.form-control', ['submit' => 'Create'])
+                            @include('back.permissions.role.partials.form-control', ['submit' => 'Create'])
                         </form>
                     </div>
                 </div>
@@ -44,25 +44,21 @@
                                         <th>Name</th>
                                         <th>Guard Name</th>
                                         <th>Created_at</th>
+                                        <th>Act</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($roles as $index => $role)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $role->name }}
-                                            <div class="table-links">
-                                                <a href="{{ route('roles.edit', $role) }}">Edit</a>
-                                                {{-- <div class="bullet"></div>
-                                                <a href="{{ route('roles.destroy', $role) }}" onclick="event.preventDefault();document.getElementById('destroy').submit();" class="text-danger">Trash</a>
-                                                <form id="destroy" action="{{ route('roles.destroy', $role) }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form> --}}
-                                            </div>
-                                        </td>
+                                        <td>{{ $role->name }}</td>
                                         <td>{{ $role->guard_name }}</td>
                                         <td>{{ $role->created_at->format('d F Y') }}</td>
+                                        <td>
+                                            <a href="{{ route('roles.edit', $role) }}" class="btn btn-sm btn-info">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
