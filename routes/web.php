@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 
 //route dashboard
-Route::middleware('has.role', 'auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::prefix('post')->group(function () {
