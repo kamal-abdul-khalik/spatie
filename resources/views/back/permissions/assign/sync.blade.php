@@ -2,8 +2,6 @@
 
 @section('css_lib')
 <link rel="stylesheet" href="{{ asset('assets/back/modules/select2/dist/css/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/back/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/back/modules/datatables/datatables.min.css') }}">
 @endsection
 
 @section('content')
@@ -20,7 +18,7 @@
                         <h4>Sync Role</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('assign.edit', $role) }}" method="post">
+                        <form action="{{ route('assigns.edit', $role) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group row mb-4">
