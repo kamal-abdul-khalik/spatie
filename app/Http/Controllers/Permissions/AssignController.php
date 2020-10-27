@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Permissions;
 
-use App\Http\Controllers\Controller;
+use App\Authorizable;
 use App\Models\{Permission, Role};
+use App\Http\Controllers\Controller;
 
 class AssignController extends Controller
 {
+    use Authorizable;
+
     public function create()
     {
         return view('back.permissions.assign.create', [
@@ -47,7 +50,7 @@ class AssignController extends Controller
 
         $role->syncPermissions(request('permissions'));
 
-        return redirect()->route('assign.create')
+        return redirect()->route('assigns.create')
             ->with('success', "Permission has been sync to the role {$role->name}");
     }
 }
