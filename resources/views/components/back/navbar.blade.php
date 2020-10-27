@@ -13,7 +13,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">{{ Auth::user()->email }}</div>
                 <a href="{{ route('profile.edit') }}" class="dropdown-item has-icon">
-                    <i class="fa fa-pencil-alt" aria-hidden="true"></i> Edit Profile
+                    <i class="far fa-id-badge"></i> Edit Profile
                 </a>
                 <a href="{{ route('password.edit') }}" class="dropdown-item has-icon">
                     <i class="fa fa-key" aria-hidden="true"></i> Update Password
