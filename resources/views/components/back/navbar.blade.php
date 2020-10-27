@@ -11,9 +11,12 @@
                 <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <div class="dropdown-title">{{ Auth::user()->email }}</div>
+                <a href="{{ route('profile.edit') }}" class="dropdown-item has-icon">
+                    <i class="fa fa-pencil-alt" aria-hidden="true"></i> Edit Profile
+                </a>
+                <a href="{{ route('password.edit') }}" class="dropdown-item has-icon">
+                    <i class="fa fa-key" aria-hidden="true"></i> Update Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="/logout" onclick="event.preventDefault();

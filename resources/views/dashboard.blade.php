@@ -17,6 +17,9 @@
         @endif
 
         <div class="section-body">
+
+            Hay {{ Auth::user()->name }}
+
         </div>
     </section>
 </div>

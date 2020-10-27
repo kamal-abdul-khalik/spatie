@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Posts\PostController;
+use App\Http\Controllers\Profile\{ProfileController, UpdatePasswordController};
 use App\Http\Controllers\Permissions\{RoleController, PermissionController, AssignController, UserController};
 
 Route::get('/', function () {
@@ -23,7 +24,17 @@ Route::middleware('auth', 'verified')->group(function () {
 
         Route::get('{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('{post:slug}/edit', [PostController::class, 'update'])->name('posts.update');
-        Route::delete('{post:slug}/destroy', [UserController::class, 'destroy'])->name('posts.destroy');
+        Route::delete('{post:slug}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+    });
+
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/', [ProfileController::class, 'updateProfileInformations']);
+    });
+
+    Route::prefix('update-password')->group(function () {
+        Route::get('/', [UpdatePasswordController::class, 'edit'])->name('password.edit');
+        Route::put('/', [UpdatePasswordController::class, 'updatePassword']);
     });
 
     // Route RoleController

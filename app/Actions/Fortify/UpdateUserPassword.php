@@ -23,10 +23,10 @@ class UpdateUserPassword implements UpdatesUserPasswords
             'current_password' => ['required', 'string'],
             'password' => $this->passwordRules(),
         ])->after(function ($validator) use ($user, $input) {
-            if (! Hash::check($input['current_password'], $user->password)) {
-                $validator->errors()->add('current_password', __('The provided password does not match your current password.'));
+            if (!Hash::check($input['current_password'], $user->password)) {
+                $validator->errors()->add('current_password', __('Password lama yang anda masukkan tidak sesuai yang ada dalam database.'));
             }
-        })->validateWithBag('updatePassword');
+        })->validate();
 
         $user->forceFill([
             'password' => Hash::make($input['password']),

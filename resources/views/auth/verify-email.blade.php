@@ -28,8 +28,8 @@
                                 @if (session('status'))
                                 <button class="btn btn-sm btn-primary" hidden>Kirim ulang verifikasi</button>
                                 @else
-                                
-                            Silahkan verifikasi email Anda untuk mengaktifkan akun, jika belum menerima email verifikasi, silahkan klik tombol kirim ulang verifikasi.
+
+                                Silahkan <strong>Periksa folder email anda</strong> dan lakukan verifikasi email untuk mengaktifkan akun ini, jika belum menerima email verifikasi, silahkan klik tombol kirim ulang verifikasi.
 
                                 <button class="btn btn-sm btn-primary">Kirim ulang verifikasi</button>
                                 @endif
