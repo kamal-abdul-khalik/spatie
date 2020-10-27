@@ -13,7 +13,11 @@
         </div>
 
         <div class="card-body">
-
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                Password berhasil direset, silahkan login menggunakan password baru Anda
+            </div>
+            @endif
             <form action="/login" method="POST" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">
@@ -36,10 +40,13 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
+                <div class="form-group d-flex justify-content-between">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
                         <label class="custom-control-label" for="remember-me">Remember Me</label>
+                    </div>
+                    <div>
+                        <a href="/forgot-password">Forgot Password</a>
                     </div>
                 </div>
 
