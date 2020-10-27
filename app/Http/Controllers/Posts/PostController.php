@@ -54,6 +54,9 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
+
+        $this->authorize('update', $post);
+
         $data = $request->all();
 
         if (request('thumbnail')) {
@@ -76,6 +79,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         Storage::delete($post->thumbnail);
         $post->tags()->detach();
         $post->delete();
