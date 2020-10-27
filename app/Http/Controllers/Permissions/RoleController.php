@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Permissions;
 
 use App\Models\Role;
+use App\Authorizable;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    use Authorizable;
+
     public function index()
     {
         return view('back.permissions.role.index', [

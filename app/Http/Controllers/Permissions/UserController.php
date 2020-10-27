@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Permissions;
 
-use App\Http\Controllers\Controller;
+use App\Authorizable;
 use App\Models\{User, Role};
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    use Authorizable;
+
+    public function index()
+    {
+        return view('back.user.index', [
+            'users' => User::get(),
+        ]);
+    }
+
     public function create()
     {
         return view('back.permissions.assign.user.create', [

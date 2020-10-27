@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Permissions;
 
+use App\Authorizable;
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
 
 class PermissionController extends Controller
 {
+
+    use Authorizable;
+
     public function index()
     {
         return view('back.permissions.permission.index', [
-            'permissions' => Permission::get(),
+            'permissions' => Permission::latest()->get(),
             'permission' => new Permission,
         ]);
     }
