@@ -33,6 +33,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($posts as $post)
+                                    @can('view', $post)
                                     <tr>
                                         <td><img alt="image" src="{{ asset($post->takeImage) }}" class="rounded-square" width="60" data-toggle="tooltip" title="{{ $post->title }}"></td>
                                         <td>{{ $post->title }}
@@ -61,6 +62,7 @@
                                         </td>
                                         <td><img alt="image" src="{{ $post->user->gravatar() }}" class="avatar mr-2 avatar-sm" width="60" data-toggle="tooltip" title="{{ $post->user->name }}"></td>
                                     </tr>
+                                    @endcan
                                     @endforeach
                                 </tbody>
                             </table>
