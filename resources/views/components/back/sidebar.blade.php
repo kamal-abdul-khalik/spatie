@@ -27,12 +27,15 @@
 
             @can('add_categories')
             <li class="menu-header">Categories</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Category</span></a>
-                <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link" href="">List Posts</a></li>
-                    <li class=""><a class="nav-link" href="">Add Post</a></li>
-                </ul>
+            <li class="{{ request()->is('category') ? ' active' : '' }}">
+                <a href="{{ route('categories.index') }}" class="nav-link {{ request()->is('category') ? ' active' : '' }}"><i class="fas fa-columns"></i> <span>Category</span></a>
+            </li>
+            @endcan
+
+            @can('add_tags')
+            <li class="menu-header">Tags</li>
+            <li class="{{ request()->is('tag') ? ' active' : '' }}">
+                <a href="{{ route('tags.index') }}" class="nav-link {{ request()->is('tag') ? ' active' : '' }}"><i class="fas fa-columns"></i> <span>Tag</span></a>
             </li>
             @endcan
 
@@ -51,18 +54,6 @@
                 </ul>
             </li>
             @endcan
-
-            @can('view_users')
-            <li class="menu-header">Management Users</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Users</span></a>
-                <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link" href="">List User</a></li>
-                    <li class=""><a class="nav-link" href="">Add User</a></li>
-                </ul>
-            </li>
-            @endcan
-            
         </ul>
 
     </aside>

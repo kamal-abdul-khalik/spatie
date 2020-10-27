@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Posts;
 
+use App\Models\Tag;
 use App\Authorizable;
-use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     use Authorizable;
 
     public function index()
     {
-        return view('back.category.index', [
-            'categories'    => Category::latest()->get(),
-            'category'      => new Category,
+        return view('back.tag.index', [
+            'tags'    => Tag::latest()->get(),
+            'tag'      => new Tag,
             'submit'        => 'Create'
         ]);
     }
@@ -26,41 +26,41 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        Category::create([
+        Tag::create([
             'name' => request('name'),
             'slug' => Str::slug(request('name'))
         ]);
 
         return redirect()->back()
-            ->with('success', 'Category with name ' . request('name') . ' was created');
+            ->with('success', 'Tag with name ' . request('name') . ' was created');
     }
 
-    public function edit(Category $category)
+    public function edit(Tag $tag)
     {
-        return view('back.category.edit', [
+        return view('back.tag.edit', [
             'submit' => 'Update',
-            'category' => $category,
+            'tag' => $tag,
         ]);
     }
 
-    public function update(Category $category)
+    public function update(Tag $tag)
     {
         request()->validate([
             'name' => 'required',
         ]);
 
-        $category->update([
+        $tag->update([
             'name' => request('name'),
             'slug' => Str::slug(request('name'))
         ]);
 
-        return redirect()->route('categories.index')
-            ->with('info', 'Category with name ' . $category->name . ' was updated');
+        return redirect()->route('tags.index')
+            ->with('info', 'Tag with name ' . $tag->name . ' was updated');
     }
 
-    public function destroy(Category $category)
+    public function destroy(Tag $tag)
     {
-        $category->delete();
+        $tag->delete();
 
         return redirect()->back()
             ->with('success', 'Success deleted');

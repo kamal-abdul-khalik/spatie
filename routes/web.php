@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Posts\PostController;
+use App\Http\Controllers\Posts\{PostController, CategoryController, TagController};
 use App\Http\Controllers\Profile\{ProfileController, UpdatePasswordController};
 use App\Http\Controllers\Permissions\{RoleController, PermissionController, AssignController, UserController};
 
@@ -25,6 +25,26 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::get('{post:slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('{post:slug}/edit', [PostController::class, 'update'])->name('posts.update');
         Route::delete('{post:slug}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+    });
+
+    Route::prefix('category')->group(function () {
+        //route posts
+        Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
+        Route::post('create', [CategoryController::class, 'store'])->name('categories.store');
+
+        Route::get('{category:slug}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::put('{category:slug}/edit', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('{category:slug}/destroy', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    });
+
+    Route::prefix('tag')->group(function () {
+        //route posts
+        Route::get('/', [TagController::class, 'index'])->name('tags.index');
+        Route::post('create', [TagController::class, 'store'])->name('tags.store');
+
+        Route::get('{tag:slug}/edit', [TagController::class, 'edit'])->name('tags.edit');
+        Route::put('{tag:slug}/edit', [TagController::class, 'update'])->name('tags.update');
+        Route::delete('{tag:slug}/destroy', [TagController::class, 'destroy'])->name('tags.destroy');
     });
 
     Route::prefix('profile')->group(function () {
