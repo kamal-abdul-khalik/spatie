@@ -29,22 +29,26 @@ Route::middleware('has.role', 'auth')->group(function () {
     // Route RoleController
     Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
         // Route Permission
-        Route::get('assignable', [AssignController::class, 'create'])->name('assign.create');
-        Route::post('assignable', [AssignController::class, 'store']);
-        Route::get('assignable/{role}/edit', [AssignController::class, 'edit'])->name('assign.edit');
-        Route::put('assignable/{role}/edit', [AssignController::class, 'update']);
+        Route::prefix('assigns')->group(function () {
+            Route::get('/', [AssignController::class, 'create'])->name('assigns.create');
+            Route::post('/', [AssignController::class, 'store'])->name('assigns.store');
+            Route::get('{role}/edit', [AssignController::class, 'edit'])->name('assigns.edit');
+            Route::put('{role}/edit', [AssignController::class, 'update'])->name('assigns.update');
+        });
         //Route User
-        Route::get('assign/user', [UserController::class, 'create'])->name('assign.user.create');
-        Route::post('assign/user', [UserController::class, 'store']);
-        Route::get('assign/{user}/user', [UserController::class, 'edit'])->name('assign.user.edit');
-        Route::put('assign/{user}/user', [UserController::class, 'update']);
+        Route::prefix('permissionUsers')->group(function () {
+            Route::get('/', [UserController::class, 'create'])->name('permissionUsers.create');
+            Route::post('/', [UserController::class, 'store'])->name('permissionUsers.store');
+            Route::get('{user}/user', [UserController::class, 'edit'])->name('permissionUsers.edit');
+            Route::put('{user}/user', [UserController::class, 'update'])->name('permissionUsers.update');
+        });
 
         Route::prefix('roles')->group(function () {
             Route::get('/', [RoleController::class, 'index'])->name('roles.index');
             Route::post('create', [RoleController::class, 'store'])->name('roles.create');
 
             Route::get('{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
-            Route::put('{role}/edit', [RoleController::class, 'update']);
+            Route::put('{role}/edit', [RoleController::class, 'update'])->name('roles.update');
         });
 
         Route::prefix('permissions')->group(function () {
@@ -52,20 +56,7 @@ Route::middleware('has.role', 'auth')->group(function () {
             Route::post('create', [PermissionController::class, 'store'])->name('permissions.create');
 
             Route::get('{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
-            Route::put('{permission}/edit', [PermissionController::class, 'update']);
+            Route::put('{permission}/edit', [PermissionController::class, 'update'])->name('permissions.update');
         });
-    });
-
-    // Route UserController
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('users.index');
-
-        Route::get('create', [UserController::class, 'create'])->name('users.create');
-        Route::post('create', [UserController::class, 'store'])->name('users.store');
-
-        Route::get('{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('{id}/edit', [UserController::class, 'update'])->name('users.update');
-
-        Route::delete('{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
     });
 });

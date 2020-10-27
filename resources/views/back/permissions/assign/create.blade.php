@@ -20,7 +20,7 @@
                         <h4>Assign Role</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('assign.create') }}" method="post">
+                        <form action="{{ route('assigns.create') }}" method="post">
                             @csrf
 
                             <div class="form-group row mb-4">
@@ -91,7 +91,7 @@
                                         <td>{{ $role->guard_name }}</td>
                                         <td>{{ $role->permissions()->get()->implode('name', ', ') }}</td>
                                         <td>
-                                            <a href="{{ route('assign.edit', $role) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('assigns.edit', $role) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </td>

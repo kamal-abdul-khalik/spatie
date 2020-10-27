@@ -18,7 +18,7 @@
                         <h4>Sync Roles for {{ $user->name }}</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('assign.user.edit', $user) }}" method="post">
+                        <form action="{{ route('permissionUsers.edit', $user) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-group row mb-4">

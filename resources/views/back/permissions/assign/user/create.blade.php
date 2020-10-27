@@ -20,7 +20,7 @@
                         <h4>Pick user by email address</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('assign.user.create') }}" method="post">
+                        <form action="{{ route('permissionUsers.create') }}" method="post">
                             @csrf
 
                             <div class="form-group row mb-4">
@@ -86,7 +86,7 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->roles()->get()->implode('name', ', ') }}</td>
                                         <td>
-                                            <a href="{{ route('assign.user.edit', $user) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('permissionUsers.edit', $user) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                         </td>
