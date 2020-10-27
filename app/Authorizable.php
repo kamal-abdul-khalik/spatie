@@ -8,12 +8,12 @@ trait Authorizable
 {
     private $abilities = [
         'index' => 'view',
-        'edit' => 'edit',
-        'show' => 'view',
-        'update' => 'edit',
         'create' => 'add',
         'store' => 'add',
-        'destroy' => 'delete'
+        'edit' => 'edit',
+        'update' => 'edit',
+        'show' => 'view',
+        'destroy' => 'delete',
     ];
 
     /**
