@@ -26,14 +26,29 @@
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
-                    @error('name')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                <div class="row">
+                    <div class="form-group col-6">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                     </div>
-                    @enderror
+                    <div class="form-group col-6">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}">
+                            @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">

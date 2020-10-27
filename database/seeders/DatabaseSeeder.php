@@ -81,8 +81,9 @@ class DatabaseSeeder extends Seeder
 
         if ($role->name == 'super admin') {
             $this->command->info('Ini adalah informasi login dari super admin: ');
-            $this->command->warn($user->email);
-            $this->command->warn('Password is "password"');
+            $this->command->warn('Email: ' . $user->email);
+            $this->command->warn('Username: ' . $user->username);
+            $this->command->warn('Password: password');
         }
     }
 }

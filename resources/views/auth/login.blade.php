@@ -17,9 +17,9 @@
             <form action="/login" method="POST" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
-                    @error('email')
+                    <label for="username">Username</label>
+                    <input id="username" type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}">
+                    @error('username')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
