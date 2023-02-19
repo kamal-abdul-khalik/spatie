@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\{Role, Permission, User};
+use Laravolt\Indonesia\Seeds\{CitiesSeeder, VillagesSeeder, DistrictsSeeder, ProvincesSeeder};
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,10 +32,10 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Perizinan default di tambahkan.');
 
         // Confirm roles needed
-        if ($this->command->confirm('Buat peran baru untuk pengguna, default peran adalah super admin dan penulis? [y|N]', true)) {
+        if ($this->command->confirm('Buat peran baru untuk pengguna, default peran adalah super admin dan penulis? [Y|N]', true)) {
 
             // Ask for roles from input
-            $input_roles = $this->command->ask('Inputkan peran, dengan dipisah dengan koma.', 'super admin,penulis');
+            $input_roles = $this->command->ask('Inputkan peran, pisahkan dengan simbol koma.', 'contoh:superadmin,penulis');
 
             // Explode roles
             $roles_array = explode(',', $input_roles);
@@ -43,7 +44,7 @@ class DatabaseSeeder extends Seeder
             foreach ($roles_array as $role) {
                 $role = Role::firstOrCreate(['name' => trim($role)]);
 
-                if ($role->name == 'super admin') {
+                if ($role->name == 'superadmin') {
                     // assign all permissions
                     $role->syncPermissions(Permission::all());
                     $this->command->info('super admin telah memilik semua akses');
@@ -79,7 +80,7 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create();
         $user->assignRole($role->name);
 
-        if ($role->name == 'super admin') {
+        if ($role->name == 'superadmin') {
             $this->command->info('Ini adalah informasi login dari super admin: ');
             $this->command->warn('Email: ' . $user->email);
             $this->command->warn('Username: ' . $user->username);
