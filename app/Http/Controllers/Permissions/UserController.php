@@ -56,7 +56,7 @@ class UserController extends Controller
     {
         $user->syncRoles(request('roles'));
 
-        return redirect()->route('assign.user.create')
+        return redirect()->back()
             ->with('success', "{$user->email} has been sync to the role ");
     }
 }
