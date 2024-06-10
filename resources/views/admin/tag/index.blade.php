@@ -60,14 +60,13 @@
                                                     <td>
                                                         <a href="{{ route('tags.edit', $tag) }}" type="button"
                                                             class="btn btn-sm btn-info"><i class="fa fa-pencil-alt"></i></a>
-                                                        <a href="{{ route('tags.destroy', $tag) }}" type="button"
-                                                            class="btn btn-sm btn-danger"
-                                                            onclick="event.preventDefault();document.getElementById('destroy').submit();"><i
-                                                                class="fa fa-trash"></i></a>
-                                                        <form id="destroy" action="{{ route('tags.destroy', $tag) }}"
-                                                            method="POST" style="display: none;">
+                                                        <button href="{{ route('tags.destroy', $tag) }}"
+                                                            class="btn btn-danger btn-sm" id="delete"><i
+                                                                class="far fa-trash-alt"></i></button>
+                                                        <form method="post" id="deleteForm">
                                                             @csrf
                                                             @method('DELETE')
+                                                            <input type="submit" value="Hapus" style="display:none">
                                                         </form>
                                                     </td>
                                                 </tr>
@@ -91,4 +90,32 @@
     <script src="/assets/admin/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/admin/modules/jquery-ui/jquery-ui.min.js"></script>
     <script src="/assets/admin/js/page/modules-datatables.js"></script>
+    <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>z
+
+    <script>
+        $('button#delete').on('click', function(e) {
+            e.preventDefault();
+            var href = $(this).attr('href');
+            Swal.fire({
+                title: 'Hapus Data Ini?',
+                text: "Perhatian data yang sudah di hapus tidak bisa di kembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm').action = href;
+                    document.getElementById('deleteForm').submit();
+                    Swal.fire(
+                        'Terhapus!',
+                        'Data sudah terhapus.',
+                        'success'
+                    )
+                }
+            })
+        });
+    </script>
 @endpush
