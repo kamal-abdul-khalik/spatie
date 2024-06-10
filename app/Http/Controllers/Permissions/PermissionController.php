@@ -13,7 +13,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        return view('back.permissions.permission.index', [
+        return view('admin.permissions.permission.index', [
             'permissions' => Permission::latest()->get(),
             'permission' => new Permission,
         ]);
@@ -36,7 +36,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        return view('back.permissions.permission.edit', [
+        return view('admin.permissions.permission.edit', [
             'submit' => 'Update',
             'permission' => $permission,
         ]);

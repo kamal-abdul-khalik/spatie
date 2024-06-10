@@ -15,14 +15,14 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('back.post.index', [
+        return view('admin.post.index', [
             'posts'     => Post::with('user', 'category')->latest()->paginate(5),
         ]);
     }
 
     public function create()
     {
-        return view('back.post.create', [
+        return view('admin.post.create', [
             'categories'    => Category::get(),
             'tags'          => Tag::get(),
             'post'          => new Post(),
@@ -44,7 +44,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('back.post.edit', [
+        return view('admin.post.edit', [
             'post'          => $post,
             'button'        => 'Update',
             'categories'    => Category::get(),

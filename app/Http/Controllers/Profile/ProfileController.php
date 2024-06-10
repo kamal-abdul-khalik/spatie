@@ -8,7 +8,7 @@ class ProfileController extends UpdateUserProfileInformation
 {
     public function edit()
     {
-        return view('back.profile.edit');
+        return view('admin.profile.edit');
     }
 
     public function updateProfileInformations()

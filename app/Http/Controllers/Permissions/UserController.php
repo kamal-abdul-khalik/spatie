@@ -12,14 +12,14 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('back.user.index', [
+        return view('admin.user.index', [
             'users' => User::get(),
         ]);
     }
 
     public function create()
     {
-        return view('back.permissions.assign.user.create', [
+        return view('admin.permissions.assign.user.create', [
             'roles' => Role::get(),
             'users' => User::has('roles')->get(),
         ]);
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('back.permissions.assign.user.edit', [
+        return view('admin.permissions.assign.user.edit', [
             'user' => $user,
             'roles' => Role::get(),
             'users' => User::has('roles')->get(),

@@ -8,7 +8,7 @@ class UpdatePasswordController extends UpdateUserPassword
 {
     public function edit()
     {
-        return view('back.profile.update-password');
+        return view('admin.profile.update-password');
     }
 
     public function updatePassword()

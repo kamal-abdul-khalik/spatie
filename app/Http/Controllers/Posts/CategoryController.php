@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('back.category.index', [
+        return view('admin.category.index', [
             'categories'    => Category::latest()->get(),
             'category'      => new Category,
             'submit'        => 'Create'
@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('back.category.edit', [
+        return view('admin.category.edit', [
             'submit' => 'Update',
             'category' => $category,
         ]);

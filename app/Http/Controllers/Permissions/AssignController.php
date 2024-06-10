@@ -12,7 +12,7 @@ class AssignController extends Controller
 
     public function create()
     {
-        return view('back.permissions.assign.create', [
+        return view('admin.permissions.assign.create', [
             'roles' => Role::get(),
             'permissions' => Permission::get(),
         ]);
@@ -34,7 +34,7 @@ class AssignController extends Controller
 
     public function edit(Role $role)
     {
-        return view('back.permissions.assign.sync', [
+        return view('admin.permissions.assign.sync', [
             'role' => $role,
             'roles' => Role::get(),
             'permissions' => Permission::get(),

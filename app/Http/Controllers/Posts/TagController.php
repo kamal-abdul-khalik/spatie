@@ -13,7 +13,7 @@ class TagController extends Controller
 
     public function index()
     {
-        return view('back.tag.index', [
+        return view('admin.tag.index', [
             'tags'    => Tag::latest()->get(),
             'tag'      => new Tag,
             'submit'        => 'Create'
@@ -37,7 +37,7 @@ class TagController extends Controller
 
     public function edit(Tag $tag)
     {
-        return view('back.tag.edit', [
+        return view('admin.tag.edit', [
             'submit' => 'Update',
             'tag' => $tag,
         ]);

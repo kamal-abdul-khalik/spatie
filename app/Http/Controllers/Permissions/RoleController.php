@@ -12,7 +12,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        return view('back.permissions.role.index', [
+        return view('admin.permissions.role.index', [
             'roles' => Role::get(),
             'role' => new Role,
         ]);
@@ -35,7 +35,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('back.permissions.role.edit', [
+        return view('admin.permissions.role.edit', [
             'submit' => 'Update',
             'role' => $role,
         ]);
