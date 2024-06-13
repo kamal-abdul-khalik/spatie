@@ -1,4 +1,4 @@
-@extends('layouts.back.auth')
+@extends('layouts.admin.auth')
 
 @section('content')
     <div class="col-12 col-sm-8 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
