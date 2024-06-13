@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\{Role, Permission, User};
-use Laravolt\Indonesia\Seeds\{CitiesSeeder, VillagesSeeder, DistrictsSeeder, ProvincesSeeder};
 
 class DatabaseSeeder extends Seeder
 {
@@ -48,9 +47,16 @@ class DatabaseSeeder extends Seeder
                     // assign all permissions
                     $role->syncPermissions(Permission::all());
                     $this->command->info('super admin telah memilik semua akses');
+                } elseif ($role->name == 'penulis') {
+                    $role->syncPermissions(Permission::where('name', '=', 'index_posts')
+                        ->orWhere('name', '=', 'add_posts')
+                        ->orWhere('name', '=', 'view_posts')
+                        ->orWhere('name', '=', 'edit_posts')
+                        ->orWhere('name', '=', 'delete_posts')
+                        ->get());
                 } else {
                     // for others by default only read access
-                    $role->syncPermissions(Permission::where('name', 'LIKE', 'view_%')->get());
+                    $this->command->info('Permission default akan ditambahkan oleh admin secaara manual');
                 }
 
                 // create one user for each role

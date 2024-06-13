@@ -16,19 +16,9 @@ class TagsSeeder extends Seeder
     public function run()
     {
         $tags = collect([
-            'Sosial',
-            'Politik',
-            'Bantuan',
-            'Covid19',
-            'Pendidikan',
-            'ASR',
-            'Profil',
+            'Olahraga',
+            'Teknologi',
             'Kesehatan',
-            'Perlombaan',
-            'Travel',
-            'Bisnis',
-            'Sport',
-            'Jabatan'
         ]);
 
         $tags->each(function ($tag) {

@@ -16,11 +16,9 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = collect([
-            'Sosial',
-            'Politik',
-            'Teknologi',
-            'Kegiatan ASR',
-            'Pendidikan',
+            'Gadget',
+            'Lifestyle',
+            'Fashion',
         ]);
 
         $categories->each(function ($category) {
