@@ -28,7 +28,7 @@
                             </div>
                             <div class="card-body">
                                 <p>(<span class="text-danger">*</span>) Wajib diisi</p>
-                                <form action="{{ route('posts.create') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
 
                                     @csrf
 

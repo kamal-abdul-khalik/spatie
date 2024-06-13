@@ -15,9 +15,36 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('admin.post.index', [
-            'posts'     => Post::with('user', 'category')->latest()->paginate(5),
-        ]);
+        $posts = Post::query()->with('category', 'user')->latest()->get();
+        if (request()->ajax()) {
+            return datatables()->of($posts)
+                ->addIndexColumn()
+                ->addColumn('action', function ($post) {
+                    return view('admin.post.button', ['post' => $post])->render();
+                })
+                ->addColumn('category', function ($post) {
+                    return $post->category->name;
+                })
+                ->addColumn('tag', function ($post) {
+                    return $post->tags()->get()->implode('name', ', ');
+                })
+                ->addColumn('status', function ($post) {
+                    return $post->status == true
+                        ? '<div class="badge badge-success"> Publish </div>'
+                        : '<div class="badge badge-warning"> Draft </div>';
+                })
+                ->addColumn('author', function ($post) {
+                    $author = '<img alt="image" src="' . $post->user->gravatar() . '" class="avatar mr-2 avatar-sm" width="60" data-toggle="tooltip" title="' . $post->user->name . '">';
+                    return $author;
+                })
+                ->addColumn('created_at', function ($post) {
+                    return $post->created_at->format('d F Y');
+                })
+                ->rawColumns(['action', 'thumbnail', 'tag', 'category', 'status', 'author', 'created_at',])
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admin.post.index', compact('posts'));
     }
 
     public function create()
@@ -31,7 +58,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug(request('title'));
         $data['thumbnail'] = request('thumbnail') ? request()->file('thumbnail')->store('img/post') : null;
 
@@ -59,7 +86,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        if (request('thumbnail')) {
+        if ($request->hasFile('thumbnail')) {
             Storage::delete($post->thumbnail);
             $thumbnail = request()->file('thumbnail')->store('img/post');
         } elseif ($post->thumbnail) {

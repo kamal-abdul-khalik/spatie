@@ -27,7 +27,7 @@
                                 <h4>Edit : {{ $post->title }}</h4>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('posts.edit', $post) }}" method="post"
+                                <form action="{{ route('posts.update', $post) }}" method="post"
                                     enctype="multipart/form-data">
 
                                     @csrf

@@ -22,7 +22,7 @@
                             </div>
                             <div class="card-body">
 
-                                <form action="{{ route('tags.edit', $tag) }}" method="post">
+                                <form action="{{ route('tags.update', $tag) }}" method="post">
 
                                     @csrf
                                     @method('PUT')

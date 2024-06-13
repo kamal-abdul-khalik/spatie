@@ -18,29 +18,29 @@
             @can('add_posts')
                 <li class="menu-header">Posts</li>
                 <li
-                    class="dropdown{{ request()->is('post') ? ' active' : '' }} || {{ request()->is('post/create') ? ' active' : '' }}">
+                    class="dropdown{{ request()->is('posts') ? ' active' : '' }} || {{ request()->is('posts/create') ? ' active' : '' }}">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-newspaper"></i>
                         <span>Post</span></a>
                     <ul class="dropdown-menu">
-                        <li class="{{ request()->is('post') ? ' active' : '' }}"><a class="nav-link"
+                        <li class="{{ request()->is('posts') ? ' active' : '' }}"><a class="nav-link"
                                 href="{{ route('posts.index') }}">List Post</a></li>
-                        <li class="{{ request()->is('post/create') ? ' active' : '' }}"><a class="nav-link"
+                        <li class="{{ request()->is('posts/create') ? ' active' : '' }}"><a class="nav-link"
                                 href="{{ route('posts.create') }}">Add Post</a></li>
                     </ul>
                 </li>
             @endcan
 
             @can('add_categories')
-                <li class="{{ request()->is('category') ? ' active' : '' }}">
+                <li class="{{ request()->is('categories') ? ' active' : '' }}">
                     <a href="{{ route('categories.index') }}"
-                        class="nav-link {{ request()->is('category') ? ' active' : '' }}"><i class="fas fa-columns"></i>
+                        class="nav-link {{ request()->is('categories') ? ' active' : '' }}"><i class="fas fa-columns"></i>
                         <span>Category</span></a>
                 </li>
             @endcan
 
             @can('add_tags')
-                <li class="{{ request()->is('tag') ? ' active' : '' }}">
-                    <a href="{{ route('tags.index') }}" class="nav-link {{ request()->is('tag') ? ' active' : '' }}"><i
+                <li class="{{ request()->is('tags') ? ' active' : '' }}">
+                    <a href="{{ route('tags.index') }}" class="nav-link {{ request()->is('tags') ? ' active' : '' }}"><i
                             class="fas fa-tags"></i> <span>Tag</span></a>
                 </li>
             @endcan

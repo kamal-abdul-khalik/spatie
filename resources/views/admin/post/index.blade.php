@@ -41,28 +41,11 @@
 
         </section>
     </div>
-
-    <div class="modal fade" tabindex="-1" role="dialog" id="konfirmasi-modal" data-backdrop="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">PERHATIAN</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p><b>Jika Anda menghapus data ini maka</b></p>
-                    <p>*data tersebut akan hilang selamanya, apakah anda yakin?</p>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-danger" name="tombol-hapus" id="tombol-hapus">Hapus
-                        Data</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <form action="" method="post" id="deleteForm">
+        @csrf
+        @method('DELETE')
+        <input type="submit" value="Hapus" style="display:none">
+    </form>
 @endsection
 
 @push('js')
@@ -70,41 +53,8 @@
     <script src="/assets/admin/modules/datatables/datatables.min.js"></script>
     <script src="/assets/admin/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/admin/modules/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        });
-        //jika klik class delete (yang ada pada tombol delete) maka tampilkan modal konfirmasi hapus maka
-        $(document).on('click', '.delete', function() {
-            dataId = $(this).attr('id');
-            $('#konfirmasi-modal').modal('show');
-        });
-
-        $('#tombol-hapus').click(function() {
-            $.ajax({
-                url: "post/" + dataId + "/destroy",
-                type: "DELETE",
-                beforeSend: function() {
-                    $('#tombol-hapus').text('Hapus Data');
-                },
-                success: function(data) {
-                    setTimeout(function() {
-                        $('#konfirmasi-modal').modal('hide');
-                        var oTable = $('#table-posts').dataTable();
-                        oTable.fnDraw(false);
-                    });
-                    iziToast.success({
-                        title: 'Data Berhasil Dihapus',
-                        message: '{{ Session('delete ') }}',
-                        position: 'topRight'
-                    });
-                }
-            })
-        });
         $(document).ready(function() {
             $("#table-posts").dataTable({
                 processing: true,
