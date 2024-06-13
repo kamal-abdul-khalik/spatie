@@ -4,12 +4,12 @@
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
-            <x-back.navbar></x-back.navbar>
-            <x-back.sidebar></x-back.sidebar>
+            <x-admin.navbar></x-admin.navbar>
+            <x-admin.sidebar></x-admin.sidebar>
 
             @yield('content')
 
-            <x-back.footer></x-back.footer>
+            <x-admin.footer></x-admin.footer>
         </div>
     </div>
 @endsection

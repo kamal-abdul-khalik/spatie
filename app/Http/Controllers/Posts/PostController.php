@@ -84,7 +84,7 @@ class PostController extends Controller
 
         $this->authorize('update', $post);
 
-        $data = $request->all();
+        $data = $request->validated();
 
         if ($request->hasFile('thumbnail')) {
             Storage::delete($post->thumbnail);
