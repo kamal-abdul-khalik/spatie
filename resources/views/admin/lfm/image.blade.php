@@ -8,7 +8,7 @@
             </div>
 
             <iframe src="/filemanager?type=image"
-                style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>
+                style="width: 100%; height: 800px; overflow: hidden; border: none;"></iframe>
         </section>
     </div>
 @endsection
