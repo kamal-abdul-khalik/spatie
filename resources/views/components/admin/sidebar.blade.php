@@ -45,6 +45,14 @@
                 </li>
             @endcan
 
+            @can('view_filemanager')
+                <li class="{{ request()->is('filemanager/image') ? ' active' : '' }}">
+                    <a href="{{ route('images.view') }}"
+                        class="nav-link {{ request()->is('filemanager/image') ? ' active' : '' }}"><i
+                            class="fas fa-folder"></i> <span>File Manager</span></a>
+                </li>
+            @endcan
+
             @can('add_roles')
                 <li class="menu-header">Roles and Permissions</li>
                 <li

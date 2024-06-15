@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\Posts\{PostController, CategoryController, TagController};
 use App\Http\Controllers\Profile\{ProfileController, UpdatePasswordController};
 use App\Http\Controllers\Permissions\{RoleController, PermissionController, AssignController, UserController};
+use UniSharp\LaravelFilemanager\Lfm;
 
 Route::get('/', function () {
     return view('front');
@@ -62,5 +64,10 @@ Route::middleware('auth', 'verified')->group(function () {
             Route::get('{permission}/edit', [PermissionController::class, 'edit'])->name('permissions.edit');
             Route::put('{permission}/edit', [PermissionController::class, 'update'])->name('permissions.update');
         });
+    });
+
+    Route::prefix('filemanager')->group(function () {
+        Lfm::routes();
+        Route::get('image', [FileManagerController::class, 'show'])->name('images.view');
     });
 });

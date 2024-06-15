@@ -46,6 +46,9 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_tags',
             'edit_tags',
             'delete_tags',
+
+            'view_filemanager',
+            'view_images',
         ];
     }
 }
